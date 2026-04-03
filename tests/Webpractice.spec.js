@@ -8,7 +8,7 @@ test('new test signin', async({page}) =>
     await page.getByText('heading', {name: 'Apparel & Shoes'});
     await expect(page.getByRole('link',{name : '50\'s Rockabilly Polka Dot Top JR Plus Size', exact:true})).toBeVisible();
     await expect(page.getByRole('link', { name: '50\'s Rockabilly Polka Dot Top JR Plus Size', exact: true })).toBeVisible();
-        
+    await page.close();   
 
 
 
