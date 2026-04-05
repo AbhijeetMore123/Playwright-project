@@ -1,27 +1,45 @@
 // @ts-check
-const {devices } = require('@playwright/test');
+const { defineConfig, devices } = require('@playwright/test');
 
-
-const config = ({
+const config = defineConfig({
   testDir: './tests',
-  timeout : 30 *1000,
-  expect : {
-    timeout : 5000
+  timeout: 30 * 1000,
+  expect: {
+    timeout: 5000
   },
- 
+
   reporter: 'html',
-  
-  use: {
-    browserName : 'chromium',
-    headless : false,
-    screenshot : 'on',
-    trace : 'retain-on-failure'
-    
-  
-  },
 
-  
-
+  projects: [
+    {
+      name: 'chromium',
+      use: {
+        ...devices['Desktop Chrome'],
+        headless: false,
+        screenshot: 'on',
+        trace: 'retain-on-failure',
+      },
+    },
+    {
+      name: 'firefox',
+      use: {
+        ...devices['Desktop Firefox'],
+        headless: false,
+        screenshot: 'on',
+        trace: 'retain-on-failure',
+      },
+    },
+    {
+      name: 'webkit',
+      use: {
+        ...devices['Desktop Safari'],
+        headless: false,
+        screenshot: 'on',
+        trace: 'retain-on-failure',
+      },
+    },
+  ],
 });
-module.exports = config
+
+module.exports = config;
 
