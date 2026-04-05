@@ -12,6 +12,7 @@ test('Purchaseproduct', async ({page}) =>
     await page.getByText("Choose your departure city:", {exect:true}).click();
     await page.getByRole('button').click();
     await page.getByRole("//tbody//tr//td//input[1]").click();
+    await page.close();
     
 
 
