@@ -13,7 +13,7 @@ test("screenshot scenario", async({page}) =>
 
 });
 
-test.only("Visual test screenshot", async({page}) =>
+test("Visual test screenshot", async({page}) =>
 {
     await page.goto("https://www.google.com/");
     expect(await page.screenshot()).toMatchSnapshot('landing.png');
