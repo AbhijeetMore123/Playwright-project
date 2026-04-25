@@ -16,6 +16,7 @@
     "allure-playwright": "^3.6.0"
   },
   "dependencies": {
-    "@cucumber/cucumber": "^12.8.1"
+    "@cucumber/cucumber": "^12.8.1",
+    "@playwright/mcp": "^0.0.70"
   }
 }
