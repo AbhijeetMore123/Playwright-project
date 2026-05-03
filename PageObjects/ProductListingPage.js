@@ -37,14 +37,14 @@ class ProductListingPage {
   async clickCartButton() {
     const cartBtn = this.page.locator('img[alt="Cart"]').first();
     await cartBtn.click();
-    // Wait for cart page to load - use a more flexible approach
-    await this.page.waitForNavigation({ url: /cart/, timeout: 15000 }).catch(() => {
-      console.log('Navigation did not match cart URL pattern');
-    });
-    // Alternatively, wait for cart page elements to be visible
-    await this.page.locator('button:has-text("Proceed")').first().waitFor({ timeout: 10000 }).catch(() => {
-      console.log('Proceed button not found');
-    });
+    
+    // Wait for cart page to load - using more flexible approach
+    // Wait for either the URL to contain 'cart' or the Proceed button to be visible
+    await Promise.race([
+      this.page.waitForURL(/cart/, { timeout: 15000 }).catch(() => null),
+      this.page.locator('button').filter({ hasText: /Proceed to Checkout/i }).first().waitFor({ timeout: 15000 }).catch(() => null),
+      this.page.waitForTimeout(2000)
+    ]);
   }
 
   async getFirstThreeProductNames() {
