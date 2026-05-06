@@ -3,6 +3,8 @@ const { defineConfig, devices } = require('@playwright/test');
 
 const config = defineConfig({
   testDir: './tests',
+  fullyParallel: false,
+  workers: 1,
   timeout: 30 * 1000,
   expect: {
     timeout: 5000
